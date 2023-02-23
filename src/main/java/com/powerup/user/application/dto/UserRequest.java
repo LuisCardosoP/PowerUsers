@@ -2,27 +2,33 @@ package com.powerup.user.application.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
+
 public class UserRequest {
 
-    @NotBlank
+    @NotBlank(message = "campo de name es obligatorio")
     private String name;
-    @NotBlank
+    @NotBlank(message = "campo de lastname es obligatorio")
     private String lastName;
-    @NotBlank
+
+
+    @Size(min=10, max=13, message="El campo debe tener entre 8 y 13 caracteres")
+    @Pattern(regexp = "\\d+")
+    @NotBlank(message = "El campo id es obligatorio")
     private String idDocument;
-    @NotBlank
+
+    @Pattern(regexp = "^\\+\\d{12}$")
+    @NotBlank(message = "El campo de telefono  es obligatorio")
     private String phone;
-    @NotEmpty
-    @Email
+
+    @NotBlank(message = "El campo correo es obligatorio")
+    @Email(message = "El correo electrónico no es válido")
     private String email;
-    @NotBlank
+    @NotBlank(message = "campo de password es obligatorio")
     private String password;
 }
