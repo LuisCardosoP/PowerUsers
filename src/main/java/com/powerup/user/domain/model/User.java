@@ -1,5 +1,13 @@
 package com.powerup.user.domain.model;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     private Long id;
     private String name;
@@ -10,7 +18,7 @@ public class User {
     private Long idRole;
     private String idDocument;
 
-    public User(Long id, String name, String lastName, String phone, String email,
+  /*  public User(Long id, String name, String lastName, String phone, String email,
                 String password, Long idRole, String idDocument) {
         this.id = id;
         this.name = name;
@@ -84,5 +92,5 @@ public class User {
 
     public void setIdDocument(String idDocument) {
         this.idDocument = idDocument;
-    }
+    }*/
 }

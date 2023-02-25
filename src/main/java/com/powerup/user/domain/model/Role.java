@@ -1,10 +1,19 @@
 package com.powerup.user.domain.model;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
     private Long id;
     private String name;
     private String description;
 
-    public Role(Long id, String name, String description) {
+    /*public Role(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -32,5 +41,5 @@ public class Role {
 
     public void setDescription(String description) {
         this.description = description;
-    }
+    }*/
 }

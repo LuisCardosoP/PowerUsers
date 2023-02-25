@@ -3,6 +3,7 @@ package com.powerup.user.infraestructure.out.jpa.adapter;
 import com.powerup.user.domain.model.Role;
 import com.powerup.user.domain.model.User;
 import com.powerup.user.domain.spi.IUserPersistencePort;
+import com.powerup.user.infraestructure.exception.UserAlreadyExistsException;
 import com.powerup.user.infraestructure.out.jpa.entity.RoleEntity;
 import com.powerup.user.infraestructure.out.jpa.entity.UserEntity;
 import com.powerup.user.infraestructure.out.jpa.mapper.IUserMapper;
@@ -17,11 +18,19 @@ public class UserJpaAdapter implements IUserPersistencePort {
     private final RoleJpaAdapter roleJpaAdapter;
     @Override
     public void saveUser(User user) {
+
+        // excepcion
+        if(userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new UserAlreadyExistsException();
+        }
         UserEntity userEntity = userMapper.toEntity(user);
         Role role = roleJpaAdapter.getRole(user.getIdRole());
         RoleEntity roleEntity = roleJpaAdapter.toRoleEntity(role);
         userEntity.setRole(roleEntity);
         userRepository.save(userEntity);
+
+
+
     }
     @Override
     public User getUser(Long id) {

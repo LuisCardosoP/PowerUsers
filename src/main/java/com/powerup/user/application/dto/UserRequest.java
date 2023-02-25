@@ -17,7 +17,7 @@ public class UserRequest {
     private String lastName;
 
 
-    @Size(min=10, max=13, message="El campo debe tener entre 8 y 13 caracteres")
+    @Size(min=7, max=13, message="El campo debe tener entre 8 y 13 caracteres")
     @Pattern(regexp = "\\d+")
     @NotBlank(message = "El campo id es obligatorio")
     private String idDocument;
